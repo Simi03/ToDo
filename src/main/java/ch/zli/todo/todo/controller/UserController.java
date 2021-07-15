@@ -13,16 +13,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
+    private UserRepository userRepository;
     private UserService userService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserController(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder){this.userService = userService; this.bCryptPasswordEncoder = bCryptPasswordEncoder;}
+    public UserController(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder, UserRepository userRepository ){this.userService = userService; this.bCryptPasswordEncoder = bCryptPasswordEncoder;this.userRepository = userRepository;}
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Benutzer> getAllUser() {
-        return userService.findAll();
+        return userRepository.findAll();
     }
 
    /* @PostMapping
@@ -36,7 +36,7 @@ public class UserController {
    @ResponseStatus(HttpStatus.CREATED)
    public void createUser(@RequestBody Benutzer user) {
        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-       userService.updateUser(user);
+       userRepository.save(user);
    }
 
     @DeleteMapping("/{id}")
