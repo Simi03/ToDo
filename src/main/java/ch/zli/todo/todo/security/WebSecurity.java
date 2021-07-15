@@ -1,6 +1,5 @@
 package ch.zli.todo.todo.security;
 
-import ch.zli.todo.todo.entity.User;
 import ch.zli.todo.todo.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;

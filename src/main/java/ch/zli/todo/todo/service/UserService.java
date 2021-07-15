@@ -1,7 +1,8 @@
 package ch.zli.todo.todo.service;
 
 import ch.zli.todo.todo.UserRepository;
-import ch.zli.todo.todo.entity.User;
+import ch.zli.todo.todo.entity.Benutzer;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,23 +16,23 @@ public class UserService implements UserDetailsService {
     UserRepository userRepository;
 
     public UserService(UserRepository userRepository) { this.userRepository = userRepository;}
-    public User createUser(User user){return userRepository.saveAndFlush(user);}
-    public List<User>findAll() {
+    public Benutzer createUser(Benutzer benutzer){return userRepository.saveAndFlush(benutzer);}
+    public List<Benutzer>findAll() {
         return userRepository.findAll();
     }
     public void deleteUser(long id) { userRepository.deleteById(id); }
-    public User updateUser(User user) {
-        return userRepository.save(user);
+    public Benutzer updateUser(Benutzer benutzer) {
+        return userRepository.save(benutzer);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Benutzer benutzer = userRepository.findByUsername(username);
+        if (benutzer == null) {
             throw new UsernameNotFoundException(username);
         }
-        return new User(user.getUsername(), user.getPassword(), emptyList());
+        return new User(benutzer.getUsername(), benutzer.getPassword(), emptyList());
     }
 
 }
-}
+

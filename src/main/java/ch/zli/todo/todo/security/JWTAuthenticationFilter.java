@@ -1,7 +1,7 @@
 package ch.zli.todo.todo.security;
 
 
-import ch.zli.todo.todo.entity.User;
+import ch.zli.todo.todo.entity.Benutzer;
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,8 +31,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest req,
                                                 HttpServletResponse res) throws AuthenticationException {
         try {
-            User creds = new ObjectMapper()
-                    .readValue(req.getInputStream(), User.class);
+            Benutzer creds = new ObjectMapper()
+                    .readValue(req.getInputStream(), Benutzer.class);
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             creds.getUsername(),

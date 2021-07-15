@@ -1,11 +1,10 @@
 package ch.zli.todo.todo.controller;
 
-import ch.zli.todo.todo.entity.User;
+import ch.zli.todo.todo.UserRepository;
+import ch.zli.todo.todo.entity.Benutzer;
 import ch.zli.todo.todo.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,20 +15,29 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserController(UserService userService){this.userService = userService;}
+    public UserController(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder){this.userService = userService; this.bCryptPasswordEncoder = bCryptPasswordEncoder;}
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<User> getAllUser() {
+    public List<Benutzer> getAllUser() {
         return userService.findAll();
     }
 
-    @PostMapping
+   /* @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@Valid @RequestBody User user) {
-        return userService.createUser(user);
+    public Benutzer createUser(@Valid @RequestBody Benutzer benutzer) {
+        return userService.createUser(benutzer);
+
     }
+    */
+   @PostMapping("/createUser")
+   @ResponseStatus(HttpStatus.CREATED)
+   public void createUser(@RequestBody Benutzer user) {
+       user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+       userService.updateUser(user);
+   }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -39,8 +47,8 @@ public class UserController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public User updateUser(@Valid @RequestBody User user) {
-        return userService.updateUser(user);
+    public Benutzer updateUser(@Valid @RequestBody Benutzer benutzer) {
+        return userService.updateUser(benutzer);
     }
 
 

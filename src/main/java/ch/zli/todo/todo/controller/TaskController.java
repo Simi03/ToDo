@@ -1,7 +1,6 @@
 package ch.zli.todo.todo.controller;
 
 import ch.zli.todo.todo.entity.Task;
-import ch.zli.todo.todo.entity.User;
 import ch.zli.todo.todo.service.TaskService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
