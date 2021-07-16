@@ -50,6 +50,4 @@ public class UserController {
         oldUser.setUsername(benutzer.getUsername());
        return userRepository.save(oldUser);
     }
-
-
 }
