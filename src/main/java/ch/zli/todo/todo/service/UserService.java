@@ -13,8 +13,9 @@ import static java.util.Collections.emptyList;
 
 @Service
 public class UserService implements UserDetailsService {
-    UserRepository userRepository;
+    UserRepository userRepository; // Import von Interface
 
+    //CRUD für User
     public UserService(UserRepository userRepository) { this.userRepository = userRepository;}
     public Benutzer createUser(Benutzer benutzer){return userRepository.saveAndFlush(benutzer);}
     public List<Benutzer>findAll() {
@@ -25,6 +26,7 @@ public class UserService implements UserDetailsService {
         return userRepository.save(benutzer);
     }
 
+    //User von Username finden
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Benutzer benutzer = userRepository.findByUsername(username);

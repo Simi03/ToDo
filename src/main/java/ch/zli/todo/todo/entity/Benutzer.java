@@ -15,7 +15,7 @@ public class Benutzer {
     private String username;
     private String password;
 
-
+    //Getter and Setter
     public long getId() {
         return id;
     }

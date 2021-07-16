@@ -8,8 +8,9 @@ import java.util.List;
 
 @Service
 public class TaskService {
-    TaskRepository taskRepository;
+    TaskRepository taskRepository; //Import von Interface
 
+    //CRUD für Tasks
     public TaskService(TaskRepository taskRepository) {this.taskRepository=taskRepository;}
     public Task createTask(Task task){return taskRepository.saveAndFlush(task);}
     public List<Task> findAll() {

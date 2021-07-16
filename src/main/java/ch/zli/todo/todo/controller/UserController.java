@@ -19,12 +19,14 @@ public class UserController {
 
     public UserController(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder, UserRepository userRepository ){this.userService = userService; this.bCryptPasswordEncoder = bCryptPasswordEncoder;this.userRepository = userRepository;}
 
+    //Userliste ausgeben
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Benutzer> getAllUser() {
         return userRepository.findAll();
     }
 
+    //User erstellen
    @PostMapping("/createUser")
    @ResponseStatus(HttpStatus.CREATED)
    public void createUser(@RequestBody Benutzer user) {
@@ -32,12 +34,14 @@ public class UserController {
        userRepository.save(user);
    }
 
+    //User erstellen
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable long id) {
         userService.deleteUser(id);
     }
 
+    //User bearbeiten
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Benutzer updateUser(@RequestBody Benutzer benutzer, @PathVariable long id) {

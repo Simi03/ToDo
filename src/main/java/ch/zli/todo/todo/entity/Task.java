@@ -12,7 +12,7 @@ public class Task {
     @ManyToOne
     private Category category;
 
-
+    //Getter and Setter
     public Long getId() {
         return id;
     }
