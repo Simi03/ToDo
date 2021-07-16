@@ -3,7 +3,7 @@ Das ist eine Applikaiton, bei der man mit einem Sring REST API User und Task ein
 Ausserdem wurde es mit JWT-Security umgesetzt und mit einem Login versehen.
 
 # Wie starten?
-Step 1: GitHub Code als ZIP herunterladen, entpacke und in einer IDE öffnen. <br>
+Step 1: GitHub Code als ZIP herunterladen, entpacken und in einer IDE öffnen. <br>
 Step 2: Datenbank mit JPA aufsetzen <br>
 Step 3: SpringBoot mit der Mainklasse starten <br>
 Step 4: Im Verzeichnis "frontend" npm install in der Konsole eingeben. <br>
