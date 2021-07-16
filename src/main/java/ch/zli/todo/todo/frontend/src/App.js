@@ -21,9 +21,9 @@ function App() {
                     <Route path={'/addUser'} component={AddUser}/>
                     <Route path={'/signUp'} component={SignUp}/>
                     <Route path={'/'} component={SignIn}/>
-                    <Route path="/editAthlete/:id" component={EditUser}/>
-                    <Route path={'/athletes'} component={UserList}/>
-                    <Route path={'/addAthlete'} component={AddUser}/>
+                    <Route path="/editTask/:id" component={EditUser}/>
+                    <Route path={'/tasks'} component={UserList}/>
+                    <Route path={'/addTask'} component={AddUser}/>
                 </Switch>
             </Router>
         </div>
