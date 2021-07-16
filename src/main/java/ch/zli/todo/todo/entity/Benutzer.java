@@ -4,12 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-/*
-spring.datasource.url=jdbc:mysql://localhost:3306/todo?serverTimezone=GMT-1
-spring.datasource.username=root
-spring.datasource.password=bbw123
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
- */
+
+
 
 @Entity
 public class Benutzer {

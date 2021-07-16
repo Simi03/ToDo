@@ -3,11 +3,11 @@ package ch.zli.todo.todo.controller;
 import ch.zli.todo.todo.UserRepository;
 import ch.zli.todo.todo.entity.Benutzer;
 import ch.zli.todo.todo.service.UserService;
+import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,13 +25,6 @@ public class UserController {
         return userRepository.findAll();
     }
 
-   /* @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Benutzer createUser(@Valid @RequestBody Benutzer benutzer) {
-        return userService.createUser(benutzer);
-
-    }
-    */
    @PostMapping("/createUser")
    @ResponseStatus(HttpStatus.CREATED)
    public void createUser(@RequestBody Benutzer user) {
@@ -47,8 +40,11 @@ public class UserController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Benutzer updateUser(@Valid @RequestBody Benutzer benutzer) {
-        return userService.updateUser(benutzer);
+    public Benutzer updateUser(@RequestBody Benutzer benutzer, @PathVariable long id) {
+        Benutzer oldUser  = userRepository.findById(id).get();
+        Assert.notNull(oldUser, "User not found");
+        oldUser.setUsername(benutzer.getUsername());
+       return userRepository.save(oldUser);
     }
 
 
